@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it works?</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: rgb(56, 56, 56);
+        }
+        .impressum-container {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .impressum-content {
+
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            max-width: 800px;
+            text-align: left;
+            margin: 0 auto;
+        }
+        .impressum-heading {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #89a081;
+        }
+        .impressum-text {
+            line-height: 1.5;
+        }
+        .custom-footer {
+            background-color: #ffffff;
+            font-size: 0.8em;
+            padding: 10px 20px;
+            text-align: center;
+            color: #89a081;
+        }
+        .custom-link,
+        .custom-link:visited {
+            color: #89a081;
+            text-decoration: none;
+            max-width: 800px;
+        }
+
+        .styled-button {
+            background-color: #89a081;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="impressum-container">
+    <div class="impressum-content">
+        <h2 class="impressum-heading">How it works</h2>
+
+    </div>
+</div>
+<div class="custom-footer">
+    <form action="{% url 'home' %}" method="get">
+        <button type="submit" class="styled-button">Back</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protein Sequence Input</title>
+    <style>
+        html, body {
+            height: 100%; /* Make sure the body takes at least the full height of the viewport */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffffff;
+            color: rgb(86, 86, 86);
+            font-size: 20px;
+        }
+
+        main {
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1; /* Allows it to expand and push the footer to the bottom */
+        }
+
+        form {
+            background-color: white;
+            padding: 25px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            height: 28pc;
+            text-align: center;
+        }
+
+        textarea {
+            width: calc(100% - 20px);
+            border: 1px solid #ccc;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            height: 170px;
+            resize: none;
+            font-size: 15px;
+        }
+
+        input[type="submit"], .custom-file-upload, select {
+            background-color: #89a081;
+            border: none;
+            color: white;
+            padding: 10px 30px;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 17px;
+            margin-top: 10px;
+        }
+
+        .custom-footer {
+            background-color: #ffffff;
+            font-size: .8em;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #89a081;
+            width: 100%; /* Ensure it spans the full width */
+        }
+
+        img.logo {
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+        {% if error_message %}
+        ::placeholder {
+        color: red;
+        }
+        {% endif %}
+
+        a.custom-link,
+        a.custom-link:visited {
+            color: #89a081;
+            text-decoration: none;
+        }
+        #notiz {
+            order: 1;
+            margin-top: 20px;
+            text-align: center;
+             line-height: 1.6;
+        }
+
+        .custom-file-upload {
+            background-color: #ffc478; /* Leichtes Orange */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Verstecke die Standard-Dateiauswahl */
+        input[type="file"] {
+            display: none;
+        }
+
+        #file-name-display {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        select {
+            width: 145px; /* Breite anpassen */
+            padding: 10px 12px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #ffc478;
+            font-size: 17px;
+            color: white;
+            cursor: pointer; /* Cursor-Stil für Klickbarkeit */
+        }
+
+        select:focus {
+            outline: none; /* Entfernt die Standard-Umrandung bei Fokus */
+        }
+
+        select option:hover {
+            background-color: #ecb16d; /* Dunkelgrüner Hintergrund beim Hover */
+            color: white; /* Weiße Textfarbe */
+        }
+
+        /* Farbe für das aktuell ausgewählte Element */
+        select option:checked {
+            background-color: #ffc478; /* Hintergrundfarbe des ausgewählten Elements */
+            color: white;
+        }
+
+            /* Logo oben rechts */
+        .logo-top-right {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 10pc; /* oder eine andere passende Größe */
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+<a href="https://www.bmfz.hhu.de/zentrallaboratorien/molecular-proteomics-laboratory-mpl" target="_blank" class="logo-link">
+        <img src="{% static 'mpl_logo.svg' %}" alt="Logo" class="logo-top-right">
+</a>
+<main>
+    <form method="post" id="sequence-form" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" hinzugefügt für den Datei-Upload -->
+        {% csrf_token %}
+        <a href="https://github.com/JaVanGri/OutCyte-2.0" target="_blank" class="logo-link">
+            <img src="{% static 'logo.svg' %}" alt="Logo" class="logo">
+        </a>
+        {% if error_message %}
+             <textarea name="sequence" rows="4" cols="50" style="" placeholder="{{ error_message }}"></textarea>
+        {% else %}
+            <textarea name="sequence" rows="4" cols="50" placeholder="Enter a protein sequence or upload a small FASTA file to start (Less than 100 entry's).&#10;&#10;Which probability's do you want?&#10; - Standard 2.0: Signal Peptide, Transmembrane, UPS, Intracellular&#10; - Standard 1.0: Signal Peptide, Transmembrane, UPS (old model), Intracellular&#10; - SP: Signal Peptide, Transmembrane, Intracellular&#10; - UPS: UPS (old model), Intracellular &#10; - UPS 2.0: UPS, Intracellular"></textarea>
+
+        {% endif %}
+        <br>
+        <!-- Benutzerdefinierter Datei-Upload-Button -->
+
+        <label for="file-upload" class="custom-file-upload" id="file-upload-label">Choose File</label>
+        <input type="file" name="fasta_file" id="file-upload" accept=".fasta">
+        <select name="mode" id="mode">
+            <option value="standardv2">Standard 2.0</option>
+            <option value="standard">Standard 1.0</option>
+            <option value="sp">SP</option>
+            <option value="ups">UPS</option>
+            <option value="upsv2">UPS 2.0</option>
+        </select>
+        <input type="submit" value="Submit" id="submit-btn">
+        <!-- Der Submit-Button bleibt unverändert -->
+
+        <!-- Bereich zur Anzeige des ausgewählten Dateinamens -->
+        <div id="file-name-display"></div>
+    </form>
+    <div id="notiz" style="font-size: 15px">
+      This version builds upon Linlin Zhao's original OutCyte, available on <a class="custom-link" href="https://github.com/linlinzhao/outcyte">GitHub</a> and the <a class="custom-link" href="http://outcyte.com/">OutCyte</a> website, with significantly improved UPS prediction capabilities.<br>
+        Install  OutCyte 2.0 as  python <a class="custom-link" href="https://github.com/JaVanGri/OutCyte-2.0">commandline-tool</a> or use a local version of this <a class="custom-link" href="https://github.com/JaVanGri/OutCyte-2.0-Server">web application</a> to have full control. <br>
+    </div>
+</main>
+<div class="custom-footer">
+    <a class="custom-link" href="{% url 'privacy' %}">Privacy</a> | <a class="custom-link" href="{% url 'impressum' %}">Impressum</a> | <a class="custom-link" href="{% url 'howitworks' %}">How it works</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script>
+    // Funktion, um den ausgewählten Dateinamen anzuzeigen
+    document.getElementById("file-upload").addEventListener("change", function() {
+        // Hole den Dateinamen aus dem Input-Feld
+        var fileName = this.files[0].name;
+        // Zeige den Dateinamen im Bereich zur Dateinamenanzeige an
+        document.getElementById("file-name-display").innerText = "Selected file: " + fileName;
+        // Ändere den Text des Datei-Upload-Buttons
+        document.getElementById("file-upload-label").innerText = "Change File";
+    });
+
+    // Funktion, um den Submit-Button zu ändern
+    document.getElementById("sequence-form").addEventListener("submit", function() {
+        var submitButton = document.getElementById("submit-btn");
+        submitButton.value = "Loading...";
+        submitButton.disabled = true;
+        submitButton.style.backgroundColor = "#ccc";
+    });
+
+    function checkFileSize(event) {
+        var file = event.target.files[0]; // Die ausgewählte Datei
+
+        if (!file) {
+            document.getElementById('file-error-message').innerText = "Please select a file.";
+            return;
+        }
+
+        var maxSizeInBytes = 3 * 1024 * 1024; // 10 MB in Bytes
+        if (file.size > maxSizeInBytes) {
+            document.getElementById('file-error-message').innerText = "The selected file is too large. Please select a file smaller than 3 MB.";
+            // Lösche die ausgewählte Datei
+            event.target.value = '';
+            return;
+        }
+
+        document.getElementById('file-error-message').innerText = '';
+    }
+    $(document).ready(function() {
+        $('#mode').select2();
+    });
+</script>
+</body>
+</html>
+
+
+
