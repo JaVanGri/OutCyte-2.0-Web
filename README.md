@@ -6,11 +6,13 @@
 
 The web application's interface is designed for ease of use, providing a user-friendly and intuitive experience that simplifies complex predictive analyses, making it accessible to researchers of all levels.
 ## How to use it?
+
+<img src="oc-web-interface.png" alt="OutCyte 2.0 Logo" style="width:50%;">
 To effectively utilize OutCyte 2.0-Web, please follow these steps:
 
 1. **Install the dependencies**:
    - Ensure you have Conda installed on your system.
-   - All necessary dependencies are listed in `environment.yml`. Install them by running the following command in the terminal:
+   - All necessary dependencies are listed in `environment.yml.` Install them by running the following command in the terminal:
    ```
    conda env create -f environment.yml
    ```
@@ -21,7 +23,7 @@ To effectively utilize OutCyte 2.0-Web, please follow these steps:
    ```
 
 3. **Prepare your FASTA file**:
-   - Ensure your FASTA file is formatted correctly with sequences you wish to analyze.
+   - Ensure your FASTA file is formatted correctly with the sequences you wish to analyze.
 
 4. **Run the application**:
    - You can simply start the server by running:
@@ -30,4 +32,6 @@ To effectively utilize OutCyte 2.0-Web, please follow these steps:
    ```
 
 5. **Settings**:
-   - Adjust settings like the maximum allowed file size in the `main/oc_settings.py`.
+   - Adjust settings like the maximum allowed file size in the `main/oc_settings.py.`
+
+
