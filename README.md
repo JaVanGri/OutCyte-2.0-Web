@@ -7,7 +7,6 @@
 The web application's interface is designed for ease of use, providing a user-friendly and intuitive experience that simplifies complex predictive analyses, making it accessible to researchers of all levels.
 ## How to use it?
 
-<img src="oc-web-interface.png" alt="OutCyte 2.0 Logo" style="width:50%;">
 To effectively utilize OutCyte 2.0-Web, please follow these steps:
 
 1. **Install the dependencies**:
@@ -34,4 +33,4 @@ To effectively utilize OutCyte 2.0-Web, please follow these steps:
 5. **Settings**:
    - Adjust settings like the maximum allowed file size in the `main/oc_settings.py.`
 
-
+<img src="oc-web-interface.png" alt="OutCyte 2.0 Logo" style="width:100%;">
