@@ -2,12 +2,12 @@ from django.views.generic import TemplateView
 
 
 class ImpressumView(TemplateView):
-    template_name = 'impressum.html'  # Der Dateiname des Impressum-Templates
+    template_name = 'impressum.html'
 
 
 class TechnicalInformationView(TemplateView):
-    template_name = 'howitworks.html'  # Der Dateiname des Impressum-Templates
+    template_name = 'howitworks.html'
 
 
 class PrivacyPolicyView(TemplateView):
-    template_name = 'privacy.html'  # Der Dateiname des Impressum-Templates
+    template_name = 'privacy.html'

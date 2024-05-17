@@ -46,16 +46,16 @@ def count_classes(results):
 def determine_columns_to_remove(mode, form):
 
     if mode == 'sp':
-        colums_to_remove = ['ups']
+        columns_to_remove = ['ups']
     elif mode == 'upsv2' or mode == 'ups':
-        colums_to_remove = ['transmembrane', 'signal_peptide']
+        columns_to_remove = ['transmembrane', 'signal_peptide']
     else:
-        colums_to_remove = []
+        columns_to_remove = []
 
     if not form.cleaned_data.get('fasta_file'):
-        colums_to_remove.append('entry')
+        columns_to_remove.append('entry')
 
-    return colums_to_remove
+    return columns_to_remove
 
 
 def run_standard_mode(file_data):
@@ -81,7 +81,10 @@ class PredictionView(View):
     semaphore = threading.Semaphore(oc_settings.maximal_number_parallel_calculations)
 
     def get(self, request):
-        return render(request, self.template_name)
+        context = {
+            'maxentrys' : self.max_file_lines+1
+        }
+        return render(request, self.template_name,context=context)
 
     def post(self, request):
         session_key = request.session.session_key
@@ -93,7 +96,7 @@ class PredictionView(View):
 
         form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
-            cache.set(lock_key, True, timeout=self.timeout)  # Setze das Lock mit einem Timeout von 5 Minuten
+            cache.set(lock_key, True, timeout=self.timeout)
             try:
                 mode = form.cleaned_data['mode']
                 fasta_file = form.cleaned_data.get('fasta_file')
@@ -111,7 +114,7 @@ class PredictionView(View):
                     'predictions': results.to_dict(orient='records')
                 })
             finally:
-                cache.delete(lock_key)  # Entferne das Lock nach der Bearbeitung
+                cache.delete(lock_key)
             return response
         return render(request, self.template_name, {'error_message': 'Invalid form submission.'})
 
@@ -139,7 +142,7 @@ class PredictionView(View):
 
             os.remove(temp_file_path)
             if len(file_data) > self.max_file_lines:
-                return None, f"File too large. Only files with fewer than {self.max_file_lines} entries are allowed."
+                return None, f"File too large. Only files with fewer than {self.max_file_lines +1 } entries are allowed."
 
             return file_data, None
         elif sequence:

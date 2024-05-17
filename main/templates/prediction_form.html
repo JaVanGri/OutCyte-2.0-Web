@@ -168,7 +168,7 @@
         {% if error_message %}
              <textarea name="sequence" rows="4" cols="50" style="" placeholder="{{ error_message }}"></textarea>
         {% else %}
-            <textarea name="sequence" rows="4" cols="50" placeholder="Enter a protein sequence or upload a small FASTA file to start (Less than 100 entry's).&#10;&#10;Which probability's do you want?&#10; - Standard 2.0: Signal Peptide, Transmembrane, UPS, Intracellular&#10; - Standard 1.0: Signal Peptide, Transmembrane, UPS (old model), Intracellular&#10; - SP: Signal Peptide, Transmembrane, Intracellular&#10; - UPS: UPS (old model), Intracellular &#10; - UPS 2.0: UPS, Intracellular"></textarea>
+            <textarea name="sequence" rows="4" cols="50" placeholder="Enter a protein sequence or upload a small FASTA file to start (Less than {{ maxentrys }} entry's).&#10;&#10;Which probability's do you want?&#10; - Standard 2.0: Signal Peptide, Transmembrane, UPS, Intracellular&#10; - Standard 1.0: Signal Peptide, Transmembrane, UPS (old model), Intracellular&#10; - SP: Signal Peptide, Transmembrane, Intracellular&#10; - UPS: UPS (old model), Intracellular &#10; - UPS 2.0: UPS, Intracellular"></textarea>
 
         {% endif %}
         <br>

@@ -1,6 +1,4 @@
-import argparse
 import os
-import sys
 import json
 import numpy as np
 import pandas as pd
@@ -8,7 +6,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import Bio.SeqIO as sio
-from torch.utils.data import DataLoader, TensorDataset
 from tqdm import tqdm
 import logging
 import esm
@@ -20,11 +17,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 script_path = os.path.realpath(__file__)
 
-# Erhalte den Verzeichnispfad zum aktuellen Skript
 script_dir = os.path.dirname(script_path)
-
-# Setze das Arbeitsverzeichnis auf das Verzeichnis des Skripts
-#os.chdir(script_dir)
 
 
 class OneHiddenLayer(nn.Module):
