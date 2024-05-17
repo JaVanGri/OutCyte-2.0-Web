@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1df43474-f338-4683-a32f-0c7da8b78fa1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oc_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/oc_settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predictions/models/outcyte_ups_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/predictions/models/outcyte_ups_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predictions/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/predictions/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/prediction_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/prediction_form.html" afterDir="false" />
-    </list>
+    <list default="true" id="1df43474-f338-4683-a32f-0c7da8b78fa1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715933529906</updated>
-      <workItem from="1715933531541" duration="2483000" />
+      <workItem from="1715933531541" duration="2906000" />
     </task>
     <servers />
   </component>
