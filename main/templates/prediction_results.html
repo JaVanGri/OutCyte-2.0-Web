@@ -87,7 +87,7 @@
     </a>
     <main>
         <div class="table-container">
-            <h2>Probability's</h2>
+            <h2>Probabilitys</h2>
             {% if not 'entry' in columns_to_remove %}
             <strong>Counts</strong> {% if not 'transmembrane' in columns_to_remove %}Tranmembrane: {{ prediction_counts.transmembrane }} |{% endif %}{% if not 'signal_peptide' in columns_to_remove %} Signal Peptide: {{ prediction_counts.signal_peptide }} |{% endif %}{% if not 'ups' in columns_to_remove %} UPS: {{ prediction_counts.ups }} |{% endif %}{% if not 'intracellular' in columns_to_remove %} Intracellular: {{ prediction_counts.intracellular }}{% endif %}
             {% endif %}
