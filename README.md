@@ -11,7 +11,7 @@ To utilize OutCyte 2.0-Web, please follow these steps:
 
 1. **Install the dependencies**:
    - Ensure you have Conda installed on your system.
-   - All necessary dependencies are listed in `environment.yml.` Install them by running the following command in the terminal:
+   - All dependencies are listed in `environment.yml.` Install them by running the following command in the terminal:
    ```
    conda env create -f environment.yml
    ```
