@@ -7,11 +7,11 @@
     <title>Protein Sequence Input</title>
     <style>
         html, body {
-            height: 100%; /* Make sure the body takes at least the full height of the viewport */
+            height: 100%;
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column; /* Stack content vertically */
+            flex-direction: column;
         }
 
         body {
@@ -27,7 +27,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-grow: 1; /* Allows it to expand and push the footer to the bottom */
+            flex-grow: 1;
         }
 
         form {
@@ -70,7 +70,7 @@
             line-height: 40px;
             text-align: center;
             color: #89a081;
-            width: 100%; /* Ensure it spans the full width */
+            width: 100%;
         }
 
         img.logo {
@@ -96,7 +96,7 @@
         }
 
         .custom-file-upload {
-            background-color: #ffc478; /* Leichtes Orange */
+            background-color: #ffc478;
             border: none;
             color: white;
             padding: 10px 20px;
@@ -106,7 +106,6 @@
             border-radius: 5px;
         }
 
-        /* Verstecke die Standard-Dateiauswahl */
         input[type="file"] {
             display: none;
         }
@@ -117,37 +116,36 @@
         }
 
         select {
-            width: 145px; /* Breite anpassen */
+            width: 145px;
             padding: 10px 12px;
             border: 1px solid #ffffff;
             border-radius: 5px;
             background-color: #ffc478;
             font-size: 17px;
             color: white;
-            cursor: pointer; /* Cursor-Stil für Klickbarkeit */
+            cursor: pointer;
         }
 
         select:focus {
-            outline: none; /* Entfernt die Standard-Umrandung bei Fokus */
+            outline: none;
         }
 
         select option:hover {
-            background-color: #ecb16d; /* Dunkelgrüner Hintergrund beim Hover */
-            color: white; /* Weiße Textfarbe */
-        }
-
-        /* Farbe für das aktuell ausgewählte Element */
-        select option:checked {
-            background-color: #ffc478; /* Hintergrundfarbe des ausgewählten Elements */
+            background-color: #ecb16d;
             color: white;
         }
 
-            /* Logo oben rechts */
+
+        select option:checked {
+            background-color: #ffc478;
+            color: white;
+        }
+
         .logo-top-right {
             position: fixed;
             top: 10px;
             right: 10px;
-            width: 10pc; /* oder eine andere passende Größe */
+            width: 10pc;
         }
 
 
@@ -160,7 +158,7 @@
         <img src="{% static 'mpl_logo.svg' %}" alt="Logo" class="logo-top-right">
 </a>
 <main>
-    <form method="post" id="sequence-form" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" hinzugefügt für den Datei-Upload -->
+    <form method="post" id="sequence-form" enctype="multipart/form-data">
         {% csrf_token %}
         <a href="https://github.com/JaVanGri/OutCyte-2.0" target="_blank" class="logo-link">
             <img src="{% static 'logo.svg' %}" alt="Logo" class="logo">
@@ -172,7 +170,7 @@
 
         {% endif %}
         <br>
-        <!-- Benutzerdefinierter Datei-Upload-Button -->
+
 
         <label for="file-upload" class="custom-file-upload" id="file-upload-label">Choose File</label>
         <input type="file" name="fasta_file" id="file-upload" accept=".fasta">
@@ -184,9 +182,7 @@
             <option value="upsv2">UPS 2.0</option>
         </select>
         <input type="submit" value="Submit" id="submit-btn">
-        <!-- Der Submit-Button bleibt unverändert -->
 
-        <!-- Bereich zur Anzeige des ausgewählten Dateinamens -->
         <div id="file-name-display"></div>
     </form>
     <div id="notiz" style="font-size: 15px">
@@ -199,17 +195,16 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
-    // Funktion, um den ausgewählten Dateinamen anzuzeigen
+
     document.getElementById("file-upload").addEventListener("change", function() {
-        // Hole den Dateinamen aus dem Input-Feld
+
         var fileName = this.files[0].name;
-        // Zeige den Dateinamen im Bereich zur Dateinamenanzeige an
+
         document.getElementById("file-name-display").innerText = "Selected file: " + fileName;
-        // Ändere den Text des Datei-Upload-Buttons
+
         document.getElementById("file-upload-label").innerText = "Change File";
     });
 
-    // Funktion, um den Submit-Button zu ändern
     document.getElementById("sequence-form").addEventListener("submit", function() {
         var submitButton = document.getElementById("submit-btn");
         submitButton.value = "Loading...";
@@ -218,17 +213,16 @@
     });
 
     function checkFileSize(event) {
-        var file = event.target.files[0]; // Die ausgewählte Datei
+        var file = event.target.files[0];
 
         if (!file) {
             document.getElementById('file-error-message').innerText = "Please select a file.";
             return;
         }
 
-        var maxSizeInBytes = 3 * 1024 * 1024; // 10 MB in Bytes
+        var maxSizeInBytes = 3 * 1024 * 1024;
         if (file.size > maxSizeInBytes) {
             document.getElementById('file-error-message').innerText = "The selected file is too large. Please select a file smaller than 3 MB.";
-            // Lösche die ausgewählte Datei
             event.target.value = '';
             return;
         }
