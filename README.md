@@ -7,7 +7,7 @@
 The web application's interface is designed for ease of use, providing a user-friendly and intuitive experience that simplifies complex predictive analyses, making it accessible to researchers of all levels.
 ## How to use it?
 
-To effectively utilize OutCyte 2.0-Web, please follow these steps:
+To utilize OutCyte 2.0-Web, please follow these steps:
 
 1. **Install the dependencies**:
    - Ensure you have Conda installed on your system.
