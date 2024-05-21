@@ -22,7 +22,7 @@ To utilize OutCyte 2.0-Web, please follow these steps:
    ```
 
 3. **Prepare your FASTA file**:
-   - Ensure your FASTA file is formatted correctly with the sequences you wish to analyze.
+   - Ensure your FASTA file is formatted correctly with the sequences you want to analyze.
    
 3.5 **For first run**:
    ```
